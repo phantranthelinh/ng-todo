@@ -1,0 +1,28 @@
+<ng-container >
+    <div>{{ service.activeCount$ | async }} items left</div>
+    <div class="space-x-3" *ngIf="service.filterType$ | async as filterType">
+      <button
+        class="py-2 px-4 rounded-lg"
+        (click)="service.setFilter('all')"
+        ngClass="{{ filterType === 'all' ? 'bg-gray-200' : '' }}"
+      >
+        All
+      </button>
+      <button
+        class="py-2 px-4 rounded-lg"
+        (click)="service.setFilter('active')"
+        ngClass="{{ filterType === 'active' ? 'bg-gray-200' : '' }}"
+      >
+        Active
+      </button>
+      <button
+        class="py-2 px-4 rounded-lg"
+        (click)="service.setFilter('completed')"
+        ngClass="{{ filterType === 'completed' ? 'bg-gray-200' : '' }}"
+      >
+        Commpleted
+      </button>
+    </div>
+    <button (click)="service.clear()">Clear</button>
+</ng-container>
+  

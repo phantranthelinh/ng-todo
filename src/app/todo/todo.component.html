@@ -1,0 +1,39 @@
+<div class="w-full flex items-center justify-center pt-10">
+    <div class="flex flex-col gap-4 w-[500px]">
+      <h1 class="text-3xl text-center">Todo app</h1>
+      <input
+        type="text"
+        (keydown.enter)="addTodo(event)"
+        #event
+        class="border border-gray-200"
+      />
+      <div class="max-w-5xl" >
+        <ul>
+          <ng-container *ngIf="vm$ |  async as vm">
+            <div *ngIf="vm.status === 'loading'">Loading...</div>
+            <div *ngIf="vm.status === 'error'">{{vm.status}}</div>
+  
+            <li *ngFor="let todo of vm.filteredItems ">
+              <div class="flex items-center gap-4">
+                <div
+                  class="w-4 h-4 cursor-pointer border grid place-content-center"
+                  (click)="toggleTodo(todo)"
+                >
+                  <span *ngIf="todo.completed">X</span>
+                </div>
+                <div
+                  class="text-xl"
+                  ngClass="{{ todo.completed ? 'line-through' : '' }}"
+                >
+                  {{ todo.title }}
+                </div>
+              </div>
+            </li>
+          </ng-container>
+        
+        </ul>
+        <div app-footer></div>
+      </div>
+    </div>
+  </div>
+  

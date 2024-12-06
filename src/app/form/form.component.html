@@ -1,0 +1,126 @@
+<!-- <form
+  (ngSubmit)="onSubmit()"
+  [formGroup]="profileForm"
+  class="flex flex-col gap-3 mx-4"
+>
+  <p>Form Status: {{ profileForm.status }}</p>
+  <label>First name: </label>
+
+  <input type="text" class="border" formControlName="firstName" />
+  <p class="text-red-500" *ngIf="profileForm.get('firstName')?.errors">
+    First name is required
+  </p>
+  <label>Last name: </label>
+  <input type="text" class="border" formControlName="lastName" />
+  <p class="text-red-500" *ngIf="profileForm.get('lastName')?.errors">
+    Last name is required
+  </p>
+  <div formGroupName="address" class="flex flex-col gap-2">
+    <h2>Address</h2>
+    <label for="street">Street: </label>
+    <input id="street" type="text" formControlName="street" />
+    <label for="city">City: </label>
+    <input id="city" type="text" formControlName="city" />
+    <label for="state">State: </label>
+    <input id="state" type="text" formControlName="state" />
+    <label for="zip">Zip Code: </label>
+    <input id="zip" type="text" formControlName="zip" />
+  </div>
+  <hr />
+
+  <div formArrayName="aliases">
+    <h2>Other fields</h2>
+    <button type="button" (click)="addAlias()">+ Add another alias</button>
+    <div *ngFor="let alias of aliases.controls; let i = index">
+      <label for="alias-{{ i }}">new input:</label>
+      <input id="alias-{{ i }}" type="text" [formControlName]="i" />
+    </div>
+  </div>
+
+ 
+
+  <hr />
+
+  <button
+    type="submit"
+    class="disabled:cursor-not-allowed disabled:opacity-50"
+    [disabled]="!profileForm.valid"
+  >
+    Submit
+  </button>
+  <button type="button" (click)="updateProfile()">Update profile</button>
+</form> -->
+
+<hr />
+<h6>Sign up form</h6>
+<form [formGroup]="userForm" class="flex flex-col">
+  <p class="text-red-500" *ngIf="this.userForm.hasError('passwordNotMatch')">
+    Xác nhận mật khẩu không đúng
+  </p>
+  <label for="email">email</label>
+  <input type="text" formControlName="email" />
+  <span
+    class="text-red-500 text-muted"
+    *ngIf="
+      !this.userForm.get('email')?.valid && this.userForm.get('email')?.touched
+    "
+  >
+    Please enter a valid email</span
+  >
+  <label for="password">Password</label>
+  <input type="text" formControlName="password" />
+  <span
+    class="text-red-500 text-muted"
+    *ngIf="
+      !this.userForm.get('password')?.valid &&
+      this.userForm.get('password')?.touched
+    "
+  >
+    Please enter a valid password</span
+  >
+  <label for="confirmPassword">Confirm Password</label>
+  <input type="text" formControlName="confirmPassword" />
+  <span
+    class="text-red-500 text-muted"
+    *ngIf="
+      !this.userForm.get('confirmPassword')?.valid &&
+      this.userForm.get('confirmPassword')?.touched
+    "
+  >
+    Please enter a valid confirm password</span
+  >
+  <div>
+    <label for="gender">Gender</label>
+    <div><input type="radio" formControlName="gener" value="male" />Male</div>
+    <div>
+      <input type="radio" formControlName="gener" value="female" />Female
+    </div>
+  </div>
+  <hr />
+
+  <div>
+    <p>multi-select</p>
+    <app-multi-select
+      [control]="this.userForm.get('selectedOptions')"
+      [options]="this.options"
+      (selectedOptionsChange)="this.handleSelectedOptionsChange($event)"
+    ></app-multi-select>
+  </div>
+  <hr />
+
+  <div class="select">
+    <label for="country">Country</label>
+
+    <select
+      formControlName="country"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+    >
+      <ng-container *ngFor="let country of countries | async">
+        <option [value]="country" [selected]="country === 'Taiwan'">
+          {{ country }}
+        </option>
+      </ng-container>
+    </select>
+  </div>
+  <button (click)="onSighUp()">Sign up</button>
+</form>

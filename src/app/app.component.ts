@@ -1,12 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-
+import { RouterLinkActive, RouterModule, RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  imports: [CommonModule, RouterModule, RouterOutlet, RouterLinkActive],
 })
 export class AppComponent {
-  title = 'todo';
+  title = 'Angular Router App';
 }

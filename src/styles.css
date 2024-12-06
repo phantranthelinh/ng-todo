@@ -1,1 +1,36 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input {
+  @apply border;
+}
+button {
+  @apply border;
+}
+.multi-select {
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 4px;
+  position: relative;
+  width: 200px;
+  cursor: pointer;
+}
+
+.dropdown-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ccc;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.dropdown-options div {
+  padding: 8px;
+  display: flex;
+  align-items: center;
+}
