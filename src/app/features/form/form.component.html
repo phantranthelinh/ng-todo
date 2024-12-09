@@ -53,57 +53,17 @@
 
 <hr />
 <h6>Sign up form</h6>
-<form [formGroup]="userForm" class="flex flex-col">
-  <p class="text-red-500" *ngIf="this.userForm.hasError('passwordNotMatch')">
-    Xác nhận mật khẩu không đúng
-  </p>
+<form [formGroup]="userForm" class="flex flex-col mx-4 max-w-4xl" errorTailor>
+  <div controlErrors></div>
   <label for="email">email</label>
   <input type="text" formControlName="email" />
-  <!-- <span
-    class="text-red-500 text-muted"
-    *ngIf="
-      !this.userForm.get('email')?.valid && this.userForm.get('email')?.touched
-    "
-  >
-    Please enter a valid email</span
-  > -->
 
-  <span class="text-red-500" *ngIf="getErrorMessage(userForm.get('email'))">
-    {{ getErrorMessage(userForm.get("email")) }}
-  </span>
   <label for="password">Password</label>
   <input type="text" formControlName="password" />
-  <!-- <span
-    class="text-red-500 text-muted"
-    *ngIf="
-      !this.userForm.get('password')?.valid &&
-      this.userForm.get('password')?.touched
-    "
-  >
-    Please enter a valid password</span
-  > -->
 
-  <span class="text-red-500" *ngIf="getErrorMessage(userForm.get('password'))">
-    {{ getErrorMessage(userForm.get("password")) }}
-  </span>
   <label for="confirmPassword">Confirm Password</label>
   <input type="text" formControlName="confirmPassword" />
-  <!-- <span
-    class="text-red-500 text-muted"
-    *ngIf="
-      !this.userForm.get('confirmPassword')?.valid &&
-      this.userForm.get('confirmPassword')?.touched
-    "
-  >
-    Please enter a valid confirm password</span
-  > -->
 
-  <span
-    class="text-red-500"
-    *ngIf="getErrorMessage(userForm.get('confirmPassword'))"
-  >
-    {{ getErrorMessage(userForm.get("confirmPassword")) }}
-  </span>
   <div>
     <label for="gender">Gender</label>
     <div><input type="radio" formControlName="gener" value="male" />Male</div>
@@ -116,54 +76,79 @@
   <div>
     <p>multi-select</p>
     <app-multi-select
-      [options]="this.options"
       (selectedOptionsChange)="this.handleSelectedOptionsChange($event)"
       formControlName="selectedOptions"
     ></app-multi-select>
-    <!-- <div *ngIf="userForm.get('selectedOptions')?.invalid && userForm.get('selectedOptions')?.touched">
-      <small class="text-red-500" *ngIf="userForm.get('selectedOptions')?.hasError('required')">
-        Please select at least one option.
-      </small>
-    </div> -->
-
-    <span
-      class="text-red-500"
-      *ngIf="getErrorMessage(userForm.get('selectedOptions'))"
-    >
-      {{ getErrorMessage(userForm.get("selectedOptions")) }}
-    </span>
   </div>
   <hr />
 
-  <div class="select">
-    <label for="country">Country</label>
-    <select
-      formControlName="country"
-      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-    >
-      <ng-container *ngFor="let country of countries | async">
-        <option [value]="country">
-          {{ country }}
-        </option>
-      </ng-container>
-    </select>
+  <p>Address</p>
+  <div class="form-group" formGroupName="address">
+    <input class="form-control" formControlName="name" placeholder="Name" />
   </div>
+
+  <section formGroupName="address">
+    <div class="form-group">
+      <input
+        class="form-control"
+        formControlName="city"
+        placeholder="City"
+        controlErrorsClass="text-red-500"
+      />
+    </div>
+
+    <div class="select">
+      <label for="country">Country</label>
+      <select
+        formControlName="country"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      >
+        <ng-container *ngFor="let country of countries$ | async">
+          <option [value]="country">
+            {{ country }}
+          </option>
+        </ng-container>
+      </select>
+    </div>
+  </section>
 
   <div class="flex gap-4 my-4">
     <div>
       <label
         for="dark"
+        [class]="
+          userForm.get('theme')?.value === 'dark'
+            ? 'border-blue-500 border-2'
+            : ''
+        "
         class="cursor-pointer bg-gray-600 border w-20 h-20 rounded-lg grid place-content-center"
       ></label>
-      <input id="dark" type="radio"  formControlName="theme" value="dark" />
+      <input
+        id="dark"
+        hidden
+        type="radio"
+        formControlName="theme"
+        value="dark"
+      />
       <span>Dark</span>
     </div>
     <div>
       <label
         for="light"
+        [class]="
+          userForm.get('theme')?.value === 'light'
+            ? 'border-blue-500 border-2'
+            : ''
+        "
         class="cursor-pointer bg-white w-20 border h-20 rounded-lg grid place-content-center text-gray-600"
       ></label>
-      <input type="radio" id="light" formControlName="theme" value="light"/>
+      <input
+        type="radio"
+        id="light"
+        hidden
+        formControlName="theme"
+        value="light"
+      />
       <span>Light</span>
     </div>
   </div>

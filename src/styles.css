@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 input {
-  @apply border;
+  @apply border rounded-md;
 }
 button {
   @apply border;
@@ -37,3 +37,11 @@ button {
 .is-active-link{
   color:blue;
 }
+
+.error-tailor-has-error input , .error-tailor-has-error select {
+  @apply border-red-500
+}
+control-error{
+  @apply text-red-500
+}
+
