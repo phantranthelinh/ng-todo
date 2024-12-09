@@ -2,10 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { errorTailorImports } from '@ngneat/error-tailor';
-import { MultiSelectComponent } from '../../multi-select/multi-select.component';
-import { formSchema } from './src/schema/form-schema';
-import { CountryService } from './src/services/country.service';
-import { passwordMatchValidator } from './src/validators/password-match.validator';
+import { MultiSelectComponent } from '../../../multi-select/multi-select.component';
+import { formSchema } from './schema/form-schema';
+import { CountryService } from './services/country.service';
+import { passwordMatchValidator } from './validators/password-match.validator';
 @Component({
   selector: 'app-form',
   imports: [
