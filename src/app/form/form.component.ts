@@ -32,7 +32,7 @@ export class FormComponent implements OnInit {
         })
       )
       .subscribe();
-    this.userForm.get('country')!.setValue('Taiwan');
+    // this.userForm.get('country')!.setValue('Taiwan');
   }
   private http = inject(HttpClient);
 
@@ -91,8 +91,8 @@ export class FormComponent implements OnInit {
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
       gener: ['male'],
-      country: ['Viet nam'],
-      selectedOptions: [],//use empty array
+      country: ['Laos'],
+      selectedOptions: [[], Validators.required],//use empty array
       // selectedOptions: this.formBuilder.array([])//use form builder empty array
     },
     { validators: this.passwordMatchValidator }
@@ -112,5 +112,33 @@ export class FormComponent implements OnInit {
     console.log(this.userForm.valid);
     console.log(this.userForm.value);
     console.log(this.userForm.hasError('passwordNotMatch'));
+    console.log(this.userForm)
+
+  }
+
+  getErrorMessage(control: AbstractControl | null): string | null {
+    if (!control || !control.errors || !control.touched) {
+      return null;
+    }
+  
+    const errorMessages: { [key: string]: string | ((error: any) => string) } = {
+      required: 'This field is required.',
+      email: 'Please enter a valid email address.',
+      passwordNotMatch: 'Passwords do not match.',
+      minlength: (error: any) => `Minimum length is ${error.requiredLength}.`,
+      maxlength: (error: any) => `Maximum length is ${error.requiredLength}.`,
+    };
+  
+
+    // Iterate through errors and return the appropriate message
+    for (const [errorKey, errorValue] of Object.entries(control.errors)) {
+      if (errorMessages[errorKey]) {
+        const message = errorMessages[errorKey];
+        return typeof message === 'function' ? message(errorValue) : message;
+      }
+    }
+  
+    // Default message if no match is found
+    return 'Invalid field.';
   }
 }
