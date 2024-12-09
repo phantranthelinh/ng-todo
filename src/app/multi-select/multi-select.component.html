@@ -1,25 +1,19 @@
 <div class="multi-select">
-  <div class="dropdown" (click)="toggleDropdown()">
-    <span *ngIf="!control.value?.length">Select options</span>
-    <span *ngFor="let selected of control.value">
-      {{ selected.label
-      }}{{ selected !== control.value[control.value.length - 1] ? "," : "" }}
-    </span>
-    <span class="arrow">{{ isDropdownOpen ? "▲" : "▼" }}</span>
-  </div>
-
-  <div *ngIf="isDropdownOpen" class="dropdown-options">
-    <div
-      *ngFor="let option of options"
-      (click)="toggleOption(option)"
-      class="option"
-    >
-      <input
-        type="checkbox"
-        [checked]="isSelected(option)"
-        [value]="option.value"
-      />
-      {{ option.label }}
-    </div>
+  <button type="button" (click)="toggleDropdown()">
+    Select Options
+  </button>
+  <div *ngIf="isDropdownOpen" class="dropdown">
+    <ul>
+      <li *ngFor="let option of options">
+        <label>
+          <input
+            type="checkbox"
+            [checked]="isSelected(option)"
+            (change)="toggleOption(option)"
+          />
+          {{ option.label }}
+        </label>
+      </li>
+    </ul>
   </div>
 </div>

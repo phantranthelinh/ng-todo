@@ -101,16 +101,15 @@
   <div>
     <p>multi-select</p>
     <app-multi-select
-      [control]="this.userForm.get('selectedOptions')"
       [options]="this.options"
       (selectedOptionsChange)="this.handleSelectedOptionsChange($event)"
+      formControlName="selectedOptions"
     ></app-multi-select>
   </div>
   <hr />
 
   <div class="select">
     <label for="country">Country</label>
-
     <select
       formControlName="country"
       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"

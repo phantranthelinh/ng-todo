@@ -92,8 +92,8 @@ export class FormComponent implements OnInit {
       confirmPassword: ['', Validators.required],
       gener: ['male'],
       country: ['Viet nam'],
-      // selectedOptions: [],//use empty array
-      selectedOptions: this.formBuilder.array([])//use form builder empty array
+      selectedOptions: [],//use empty array
+      // selectedOptions: this.formBuilder.array([])//use form builder empty array
     },
     { validators: this.passwordMatchValidator }
   );
