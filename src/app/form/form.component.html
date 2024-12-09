@@ -69,7 +69,7 @@
   > -->
 
   <span class="text-red-500" *ngIf="getErrorMessage(userForm.get('email'))">
-    {{ getErrorMessage(userForm.get('email')) }}
+    {{ getErrorMessage(userForm.get("email")) }}
   </span>
   <label for="password">Password</label>
   <input type="text" formControlName="password" />
@@ -84,7 +84,7 @@
   > -->
 
   <span class="text-red-500" *ngIf="getErrorMessage(userForm.get('password'))">
-    {{ getErrorMessage(userForm.get('password')) }}
+    {{ getErrorMessage(userForm.get("password")) }}
   </span>
   <label for="confirmPassword">Confirm Password</label>
   <input type="text" formControlName="confirmPassword" />
@@ -98,8 +98,11 @@
     Please enter a valid confirm password</span
   > -->
 
-  <span class="text-red-500" *ngIf="getErrorMessage(userForm.get('confirmPassword'))">
-    {{ getErrorMessage(userForm.get('confirmPassword')) }}
+  <span
+    class="text-red-500"
+    *ngIf="getErrorMessage(userForm.get('confirmPassword'))"
+  >
+    {{ getErrorMessage(userForm.get("confirmPassword")) }}
   </span>
   <div>
     <label for="gender">Gender</label>
@@ -123,8 +126,11 @@
       </small>
     </div> -->
 
-    <span class="text-red-500" *ngIf="getErrorMessage(userForm.get('selectedOptions'))">
-      {{ getErrorMessage(userForm.get('selectedOptions')) }}
+    <span
+      class="text-red-500"
+      *ngIf="getErrorMessage(userForm.get('selectedOptions'))"
+    >
+      {{ getErrorMessage(userForm.get("selectedOptions")) }}
     </span>
   </div>
   <hr />
@@ -136,11 +142,30 @@
       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
     >
       <ng-container *ngFor="let country of countries | async">
-        <option [value]="country" >
+        <option [value]="country">
           {{ country }}
         </option>
       </ng-container>
     </select>
+  </div>
+
+  <div class="flex gap-4 my-4">
+    <div>
+      <label
+        for="dark"
+        class="cursor-pointer bg-gray-600 border w-20 h-20 rounded-lg grid place-content-center"
+      ></label>
+      <input id="dark" type="radio"  formControlName="theme" value="dark" />
+      <span>Dark</span>
+    </div>
+    <div>
+      <label
+        for="light"
+        class="cursor-pointer bg-white w-20 border h-20 rounded-lg grid place-content-center text-gray-600"
+      ></label>
+      <input type="radio" id="light" formControlName="theme" value="light"/>
+      <span>Light</span>
+    </div>
   </div>
   <button (click)="onSighUp()">Sign up</button>
 </form>

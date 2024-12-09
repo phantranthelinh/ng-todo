@@ -94,6 +94,7 @@ export class FormComponent implements OnInit {
       country: ['Laos'],
       selectedOptions: [[], Validators.required],//use empty array
       // selectedOptions: this.formBuilder.array([])//use form builder empty array
+      theme: ['dark', Validators.required],
     },
     { validators: this.passwordMatchValidator }
   );
@@ -108,11 +109,8 @@ export class FormComponent implements OnInit {
   }
 
   onSighUp() {
-    this.userForm.markAllAsTouched();
-    console.log(this.userForm.valid);
+    // this.userForm.markAllAsTouched();
     console.log(this.userForm.value);
-    console.log(this.userForm.hasError('passwordNotMatch'));
-    console.log(this.userForm)
 
   }
 
