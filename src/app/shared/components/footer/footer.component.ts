@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { TodoService } from '../services/todo.service';
 import { CommonModule } from '@angular/common';
+import { TodoService } from '../../../features/todo/services/todo.service';
 
 @Component({
   selector: 'app-footer, [app-footer]',

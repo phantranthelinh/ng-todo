@@ -34,6 +34,16 @@
         >notification</a
       >
     </li>
+    <li class="hover:opacity-75">
+      <a
+        class="hover:opacity-75 active:text-blue-500"
+        [routerLink]="['/tabs']"
+        routerLinkActive="is-active-link"
+        ariaCurrentWhenActive="page"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >tabs</a
+      >
+    </li>
   </ul>
 </nav>
 <!-- The routed views render in the <router-outlet>-->

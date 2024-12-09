@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { TodoService } from '../services/todo.service';
-import { FilterType, ToDoItem } from '../types';
 import { CommonModule } from '@angular/common';
-import { FooterComponent } from '../footer/footer.component';
+import { FooterComponent } from '../../shared/components/footer/footer.component';
+import { FilterType, ToDoItem } from '../../types';
+import { TodoService } from './services/todo.service';
 
 @Component({
   selector: 'app-todo',

@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { NotificationButtonComponent } from "../notification-button/notification-button.component";
-import { NotificationComponent } from "../notification/notification.component";
+import { NotificationComponent } from "../notification.component";
 
 @Component({
   selector: 'app-notification-container',

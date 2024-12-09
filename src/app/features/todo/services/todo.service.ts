@@ -6,9 +6,9 @@ import {
   shareReplay,
   tap,
 } from 'rxjs';
-import { FilterType, StatusType, ToDoItem } from '../types';
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { FilterType, StatusType, ToDoItem } from '../../../types';
 
 type State = {
   items: ToDoItem[];
