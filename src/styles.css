@@ -34,3 +34,6 @@ button {
   display: flex;
   align-items: center;
 }
+.is-active-link{
+  color:blue;
+}

@@ -1,0 +1,14 @@
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+
+  <div class="spacer"></div>
+  <div class="notif-bell">
+    <app-notification-button
+    [count]="notificationsCount()"
+    ></app-notification-button>
+  </div>
+</div>
+
+<div class="content" role="main">
+  <app-notification [(count)]="notificationsCount"  ></app-notification>
+</div>
