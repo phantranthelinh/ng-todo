@@ -6,10 +6,10 @@ import { BehaviorSubject, map, tap } from 'rxjs';
 export class CountryService {
   private country$ = new BehaviorSubject<any[]>([]);
   private http = inject(HttpClient);
-
+  private apiUrl = 'https://restcountries.com/v3.1/all';
   loadCountries() {
     this.http
-      .get('https://restcountries.com/v3.1/all')
+      .get(this.apiUrl)
       .pipe(tap((countryList: any) => this.country$.next(countryList)))
       .subscribe();
   }
