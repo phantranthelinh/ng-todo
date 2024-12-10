@@ -11,12 +11,16 @@ export const formSchema = {
   selectedOptions: [[], Validators.required], //use empty array
   theme: ['dark', Validators.required],
   address: formBuilder.group({
-    name: ['', Validators.required, Validators.minLength(3)],
+    name: ['', [Validators.required, Validators.minLength(3)]],
     city: ['', Validators.required],
     country: ['Laos'],
   }),
-  skills: formBuilder.array([formBuilder.group({
-    name: ['', Validators.required, Validators.minLength(3)],
-    level: ['', Validators.required],
-  })]) as FormArray,
+  skills: formBuilder.array([createSkillGroup()]),
 };
+
+export function createSkillGroup() {
+  return formBuilder.group({
+    name: ['', [Validators.required, Validators.minLength(3)]],
+    level: ['', [Validators.required, numberValidator()]],
+  });
+}

@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { errorTailorImports } from '@ngneat/error-tailor';
 import { MultiSelectComponent } from '../../../shared/components/multi-select/multi-select.component';
-import { formSchema } from './schema/form-schema';
+import { createSkillGroup, formSchema } from './schema/form-schema';
 import { CountryService } from './services/country.service';
 import { passwordMatchValidator } from './validators/password-match.validator';
 import { numberValidator } from './validators/number.validator';
@@ -44,12 +44,7 @@ export class FormComponent implements OnInit {
   }
 
   addNewSkill(): void {
-    this.skills.push(
-      this.formBuilder.group({
-        name: ['', [Validators.required, Validators.minLength(3)]],
-        level: ['', Validators.required],
-      })
-    );
+      this.skills.push(createSkillGroup());
   }
 
   get skills(): FormArray {

@@ -19,6 +19,9 @@ export const appConfig: ApplicationConfig = {
           invalidAddress: (error) => `Address isn't valid`,
         },
       },
+      controlErrorsOn:{
+        blur: true
+      }
     }),
   ],
 };
