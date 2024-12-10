@@ -1,11 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { errorTailorImports } from '@ngneat/error-tailor';
 import { MultiSelectComponent } from '../../../shared/components/multi-select/multi-select.component';
 import { formSchema } from './schema/form-schema';
 import { CountryService } from './services/country.service';
 import { passwordMatchValidator } from './validators/password-match.validator';
+import { numberValidator } from './validators/number.validator';
 @Component({
   selector: 'app-form',
   imports: [
@@ -38,51 +44,23 @@ export class FormComponent implements OnInit {
   }
 
   addNewSkill(): void {
-    (this.userForm.get('skills') as FormArray)?.push(
-      this.formBuilder.control('')
+    this.skills.push(
+      this.formBuilder.group({
+        name: ['', [Validators.required, Validators.minLength(3)]],
+        level: ['', Validators.required],
+      })
     );
   }
 
   get skills(): FormArray {
     return this.userForm.get('skills') as FormArray;
   }
+  removeSkill(index: number) {
+    this.skills.removeAt(index);
+  }
   onSighUp() {
     this.userForm.markAllAsTouched();
     console.log(this.userForm.value);
     console.log(this.userForm.getError('email'));
   }
-
-  // profileForm = this.formBuilder.group({
-  //   firstName: ['', Validators.required, forbidenName(/bob/i)],
-  //   lastName: ['', Validators.required],
-  //   address: this.formBuilder.group({
-  //     street: [''],
-  //     city: [''],
-  //     state: [''],
-  //     zip: [''],
-  //   }),
-  //   aliases: this.formBuilder.array([this.formBuilder.control('')]),
-  // })
-
-  // get aliases() {
-  //   return this.profileForm.get('aliases') as FormArray;
-  // }
-  // addAlias() {
-  //   this.aliases.push(this.formBuilder.control(''));
-  // }
-  // onSubmit() {
-  //   console.log(this.profileForm.value);
-  //   console.log(this.profileForm.valid);
-  // }
-
-  // updateProfile() {
-  //   this.profileForm.patchValue({
-  //     firstName: 'Test',
-  //     address: {
-  //       street: 'Test',
-  //     },
-  //   });
-  // }
-
-  //use empty array
 }
