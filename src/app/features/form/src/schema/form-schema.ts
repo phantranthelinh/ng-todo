@@ -1,4 +1,4 @@
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 
 const formBuilder = new FormBuilder();
 
@@ -14,4 +14,5 @@ export const formSchema = {
     city: ['', Validators.required],
     country: ['Laos'],
   }),
+  skills: formBuilder.array([formBuilder.control("")]) as FormArray,
 };

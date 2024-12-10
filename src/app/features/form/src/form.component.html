@@ -152,5 +152,12 @@
       <span>Light</span>
     </div>
   </div>
+  <div formArrayName="skills">
+    <div *ngFor="let skill of skills.controls; let i = index">
+      <input [formControlName]="i" placeholder="Enter a skill" />
+    </div>
+  </div>
+  <button type="button" (click)="addNewSkill()">Add new skill</button>
+
   <button (click)="onSighUp()">Sign up</button>
 </form>

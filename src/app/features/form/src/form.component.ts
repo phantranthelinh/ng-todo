@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { errorTailorImports } from '@ngneat/error-tailor';
 import { MultiSelectComponent } from '../../../shared/components/multi-select/multi-select.component';
 import { formSchema } from './schema/form-schema';
@@ -37,6 +37,15 @@ export class FormComponent implements OnInit {
     console.log(selectedOptions);
   }
 
+  addNewSkill(): void {
+    (this.userForm.get('skills') as FormArray)?.push(
+      this.formBuilder.control('')
+    );
+  }
+
+  get skills(): FormArray {
+    return this.userForm.get('skills') as FormArray;
+  }
   onSighUp() {
     this.userForm.markAllAsTouched();
     console.log(this.userForm.value);
