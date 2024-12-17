@@ -1,59 +1,8 @@
-<!-- <form
-  (ngSubmit)="onSubmit()"
-  [formGroup]="profileForm"
-  class="flex flex-col gap-3 mx-4"
->
-  <p>Form Status: {{ profileForm.status }}</p>
-  <label>First name: </label>
 
-  <input type="text" class="border" formControlName="firstName" />
-  <p class="text-red-500" *ngIf="profileForm.get('firstName')?.errors">
-    First name is required
-  </p>
-  <label>Last name: </label>
-  <input type="text" class="border" formControlName="lastName" />
-  <p class="text-red-500" *ngIf="profileForm.get('lastName')?.errors">
-    Last name is required
-  </p>
-  <div formGroupName="address" class="flex flex-col gap-2">
-    <h2>Address</h2>
-    <label for="street">Street: </label>
-    <input id="street" type="text" formControlName="street" />
-    <label for="city">City: </label>
-    <input id="city" type="text" formControlName="city" />
-    <label for="state">State: </label>
-    <input id="state" type="text" formControlName="state" />
-    <label for="zip">Zip Code: </label>
-    <input id="zip" type="text" formControlName="zip" />
-  </div>
-  <hr />
-
-  <div formArrayName="aliases">
-    <h2>Other fields</h2>
-    <button type="button" (click)="addAlias()">+ Add another alias</button>
-    <div *ngFor="let alias of aliases.controls; let i = index">
-      <label for="alias-{{ i }}">new input:</label>
-      <input id="alias-{{ i }}" type="text" [formControlName]="i" />
-    </div>
-  </div>
-
- 
-
-  <hr />
-
-  <button
-    type="submit"
-    class="disabled:cursor-not-allowed disabled:opacity-50"
-    [disabled]="!profileForm.valid"
-  >
-    Submit
-  </button>
-  <button type="button" (click)="updateProfile()">Update profile</button>
-</form> -->
 
 <hr />
 <h6>Sign up form</h6>
-<form [formGroup]="userForm" class="flex flex-col mx-4 max-w-7xl" errorTailor>
+<form [formGroup]="userForm" class="flex flex-col mx-8 max-w-7xl" errorTailor>
   <label for="email">email</label>
   <input type="text" formControlName="email" />
 
@@ -61,8 +10,11 @@
   <input type="text" formControlName="password" />
 
   <label for="confirmPassword">Confirm Password</label>
-  <input type="text" formControlName="confirmPassword"  />
+  <input type="text" formControlName="confirmPassword" [controlErrorAnchor]="anchor"     />
+  <div>
+    <ng-template controlErrorAnchor #anchor="controlErrorAnchor"></ng-template>
 
+  </div>
   <div>
     <label for="gender">Gender</label>
     <div><input type="radio" formControlName="gener" value="male" />Male</div>

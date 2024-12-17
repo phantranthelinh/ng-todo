@@ -4,14 +4,13 @@ import {
   FormArray,
   FormBuilder,
   ReactiveFormsModule,
-  Validators,
 } from '@angular/forms';
 import { errorTailorImports } from '@ngneat/error-tailor';
 import { MultiSelectComponent } from '../../../shared/components/multi-select/multi-select.component';
 import { createSkillGroup, formSchema } from './schema/form-schema';
 import { CountryService } from './services/country.service';
 import { passwordMatchValidator } from './validators/password-match.validator';
-import { numberValidator } from './validators/number.validator';
+
 @Component({
   selector: 'app-form',
   imports: [
@@ -56,6 +55,6 @@ export class FormComponent implements OnInit {
   onSighUp() {
     this.userForm.markAllAsTouched();
     console.log(this.userForm.value);
-    console.log(this.userForm.getError('email'));
+    console.log(this.userForm.getError('notANumber'));
   }
 }

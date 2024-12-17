@@ -16,7 +16,8 @@ export const appConfig: ApplicationConfig = {
           required: 'This field is required',
           minlength: ({ requiredLength, actualLength }) =>
             `Expect ${requiredLength} but got ${actualLength}`,
-          invalidAddress: (error) => `Address isn't valid`,
+          invalidAddress: (error: any) => `Address isn't valid`,
+          notANumber: 'Not a number',
         },
       },
       controlErrorsOn:{

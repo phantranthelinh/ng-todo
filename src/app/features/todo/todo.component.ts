@@ -6,6 +6,7 @@ import { TodoService } from './services/todo.service';
 
 @Component({
   selector: 'app-todo',
+  standalone: true,
   imports: [CommonModule, FooterComponent],
   templateUrl: './todo.component.html',
   providers: [TodoService],

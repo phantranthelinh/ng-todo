@@ -5,6 +5,7 @@ import { TodoService } from '../../../features/todo/services/todo.service';
 @Component({
   selector: 'app-footer, [app-footer]',
   imports: [CommonModule],
+  standalone: true,
   templateUrl: './footer.component.html',
   host:{
     class: "w-full flex justify-between pt-10 items-center"
