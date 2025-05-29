@@ -5,7 +5,14 @@ import { RouterLinkActive, RouterModule, RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  imports: [CommonModule, RouterModule, RouterOutlet, RouterLinkActive,FormsModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    RouterOutlet,
+    RouterLinkActive,
+    FormsModule,
+  ],
+  standalone: true,
 })
 export class AppComponent {
   title = 'Angular Router App';

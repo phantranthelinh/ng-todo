@@ -3,6 +3,7 @@ import { FormComponent } from './features/form/src/form.component';
 import { NotificationContainerComponent } from './features/notification/notification-container/notification-container.component';
 import { Tabs } from './features/tabs/tabs.component';
 import { TodoComponent } from './features/todo/todo.component';
+import { ReuseFormComponent } from './features/reuse-form/form.component';
 
 export const routes: Routes = [
   {
@@ -20,5 +21,9 @@ export const routes: Routes = [
   {
     path: 'tabs',
     component: Tabs,
+  },
+  {
+    path: 'reuse-form',
+    component: ReuseFormComponent,
   },
 ];

@@ -8,11 +8,9 @@
         [routerLink]="['/']"
         routerLinkActive="is-active-link"
         ariaCurrentWhenActive="page"
-        [routerLinkActiveOptions]="{ exact: true }" 
+        [routerLinkActiveOptions]="{ exact: true }"
         >Todo</a
-    
       >
-
     </li>
     <li class="hover:opacity-75">
       <a
@@ -42,6 +40,16 @@
         ariaCurrentWhenActive="page"
         [routerLinkActiveOptions]="{ exact: true }"
         >tabs</a
+      >
+    </li>
+    <li class="hover:opacity-75">
+      <a
+        class="hover:opacity-75 active:text-blue-500"
+        [routerLink]="['/reuse-form']"
+        routerLinkActive="is-active-link"
+        ariaCurrentWhenActive="page"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Reuse-form</a
       >
     </li>
   </ul>
